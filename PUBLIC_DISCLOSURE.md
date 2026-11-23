@@ -1,0 +1,4 @@
+# Public Disclosure & IP Boundary (`prometheus-circuit-complexity-atlas`)
+
+- **Published Verifiable Artifacts:** All `187` native cloud Job IDs / AWS Braket Task ARNs, unrouted logical OpenQASM 2.0 benchmark circuits, raw primary and confirmation bitstring histograms (`1,407,488` physical hardware shots), post-compilation structural counts (`2Q` gates, circuit depth, spatial pack factor), settled native provider billing units, and all `5/32` baseline wins (`G02`, `G03`, `G06`, `G26`, `G30`).
+- **Withheld Proprietary Methodology:** Internal compiler routing heuristics, multi-objective calibration scoring weights, candidate selection rules, and proprietary synthesis implementations remain private to Prometheus Dynamics Canada. Prometheus is evaluated strictly as a black-box execution control plane against stock Qiskit SABRE (`optimization_level=3`) and Quantinuum TKET (`DefaultMappingPass + SynthesiseTket`).
