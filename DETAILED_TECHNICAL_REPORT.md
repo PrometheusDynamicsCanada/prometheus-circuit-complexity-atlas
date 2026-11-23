@@ -13,7 +13,7 @@ Every completed 3-compiler benchmark executed through the Prometheus Execution C
 | `G03` | `ibm_fez` | Heterogeneous Dense + Star + QFT + QAOA (`15Q`, `1w`) | **`0.4554`** | `0.4089` | `0.3290` | `166.25` / `298.0` / `185.0` | `7.0 seconds` | `-27.76%` |
 | `G04` | `ibm_kingston` | Heterogeneous Dense + Star + QFT + QAOA (`17Q`, `1w`) | **`0.6765`** | `0.6129` | `0.6732` | `196.5` / `346.75` / `177.75` | `11.0 seconds` | `-0.49%` |
 | `G05` | `ibm_kingston` | Heterogeneous Dense + Star + QFT + QAOA (`17Q`, `2w`) | `0.6284` | `0.5859` | **`0.6748`** | `178.25` / `357.0` / `161.0` | `9.0 seconds` | `+7.38%` |
-| `G06` | `ibm_kingston` | Molecular QWC & Conserved-Particle (`6Q`, `4w`) | `Halted ($0)` | `0.9609` | **`0.9664`** | `Halted` / `3.0` / `3.0` | `6.0 seconds` | `+0.57%` |
+| `G06` | `ibm_kingston` | Molecular QWC & Conserved-Particle (`6Q`, `4w`) | `Halted ($0.00)` | `0.9609` | **`0.9664`** | `Halted` / `3.0` / `3.0` | `6.0 seconds` | `+0.57%` |
 | `G07` | `iqm_emerald` | Dense All-to-All (K_N) (`7Q`, `1w`) | `0.8923` | `0.8526` | **`0.9236`** | `37.0` / `55.0` / `28.0` | `2.25 credits` | `+3.51%` |
 | `G08` | `iqm_emerald` | Independent-Set / MIS (`6Q`, `2w`) | `0.9127` | **`0.9393`** | `0.9189` | `5.0` / `5.0` / `6.5` | `2.25 credits` | `-2.17%` |
 | `G09` | `iqm_emerald` | Molecular QWC & Conserved-Particle (`6Q`, `4w`) | `0.9680` | `0.9690` | **`0.9743`** | `3.0` / `3.0` / `3.0` | `2.25 credits` | `+0.55%` |
@@ -26,17 +26,17 @@ Every completed 3-compiler benchmark executed through the Prometheus Execution C
 | `G16` | `ibm_kingston` | Molecular QWC & Conserved-Particle (`4Q`, `5w`) | `0.9911` | `0.9918` | **`0.9918`** | `3.0` / `3.0` / `3.0` | `8.0 seconds` | `+0.00%` |
 | `G17` | `ibm_kingston` | Molecular QWC & Conserved-Particle (`6Q`, `1w`) | `0.9574` | `0.9647` | **`0.9749`** | `17.0` / `27.0` / `17.0` | `32.0 seconds` | `+1.06%` |
 | `G18` | `iqm_emerald` | Central-Hub Star (K_{1,N-1}) (`13Q`, `1w`) | `0.3370` | `0.7248` | **`0.7903`** | `25.0` / `24.0` / `18.0` | `3.0 credits` | `+9.04%` |
-| `G19` | `aws_rigetti_cepheus` | Central-Hub Star (K_{1,N-1}) (`13Q`, `1w`) | `0.1025` | `0.0860` | **`0.2622`** | `24.0` / `36.0` / `17.0` | `7.9728 usd` | `+155.80%` |
+| `G19` | `aws_rigetti_cepheus` | Central-Hub Star (K_{1,N-1}) (`13Q`, `1w`) | `0.1025` | `0.0860` | **`0.2622`** | `24.0` / `36.0` / `17.0` | `$7.97 USD` | `+155.80%` |
 | `G20` | `ibm_fez` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8486` | `0.8726` | **`0.9423`** | `13.0` / `11.0` / `8.0` | `6.0 seconds` | `+7.99%` |
 | `G21` | `ibm_marrakesh` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8626` | `0.7476` | **`0.8906`** | `11.0` / `11.0` / `14.0` | `6.0 seconds` | `+3.25%` |
 | `G22` | `ibm_kingston` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8982` | `0.9255` | **`0.9315`** | `13.0` / `10.0` / `8.0` | `6.0 seconds` | `+0.65%` |
 | `G23` | `iqm_garnet` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8309` | `0.8335` | **`0.9088`** | `7.0` / `12.0` / `7.0` | `1.0 credits` | `+9.03%` |
-| `G24` | `aws_rigetti_cepheus` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `Halted ($0)` | `Halted ($0)` | **`0.7313`** | `Halted` / `Halted` / `12.0` | `1.9056 usd` | **Only Pass** |
+| `G24` | `aws_rigetti_cepheus` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `Halted ($0.00)` | `Halted ($0.00)` | **`0.7313`** | `Halted` / `Halted` / `12.0` | `$1.91 USD` | **Only Pass** |
 | `G25` | `ibm_fez` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8970` | `0.8709` | **`0.9451`** | `13.0` / `11.0` / `8.0` | `6.0 seconds` | `+5.36%` |
 | `G26` | `ibm_kingston` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.9149` | `0.9145` | **`0.9360`** | `13.0` / `10.0` / `8.0` | `6.0 seconds` | `+2.31%` |
 | `G27` | `ibm_marrakesh` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | **`0.9127`** | `0.5323` | `0.8469` | `11.0` / `11.0` / `14.0` | `6.0 seconds` | `-7.21%` |
 | `G28` | `iqm_garnet` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8219` | `0.8357` | **`0.9068`** | `7.0` / `12.0` / `7.0` | `1.0 credits` | `+8.51%` |
-| `G29` | `aws_rigetti_cepheus` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.2565` | `0.4006` | **`0.7439`** | `12.0` / `12.0` / `12.0` | `1.9056 usd` | `+85.70%` |
+| `G29` | `aws_rigetti_cepheus` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.2565` | `0.4006` | **`0.7439`** | `12.0` / `12.0` / `12.0` | `$1.91 USD` | `+85.70%` |
 | `G30` | `iqm_garnet` | Central-Hub Star (K_{1,N-1}) (`3Q`, `1w`) | **`0.9782`** | `0.9717` | `0.9762` | `2.0` / `2.0` / `2.0` | `1.0 credits` | `-0.20%` |
 | `G31` | `iqm_garnet` | Central-Hub Star (K_{1,N-1}) (`7Q`, `1w`) | `0.8768` | `0.8938` | **`0.9208`** | `6.33` / `7.33` / `6.0` | `2.0 credits` | `+3.02%` |
 | `G32` | `iqm_garnet` | Central-Hub Star (K_{1,N-1}) (`10Q`, `1w`) | `0.6644` | `0.7799` | **`0.8383`** | `12.67` / `15.67` / `10.0` | `2.0 credits` | `+7.49%` |

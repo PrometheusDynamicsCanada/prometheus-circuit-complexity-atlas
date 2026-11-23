@@ -6,7 +6,7 @@
 
 - **The question:** How does compilation quality change as quantum circuits grow wider and connect qubits that are not physical neighbors on the chip?
 - **The test:** We ran `32` live three-compiler benchmark groups (`187` unique cloud records: `186` completed benchmark jobs/tasks + `1` cancelled auxiliary job = `464` PUBs and `1,407,488` physical shots) comparing Qiskit SABRE O3, Quantinuum TKET, and Prometheus across `6` superconducting processors (`IBM Fez`, `IBM Kingston`, `IBM Marrakesh`, `IQM Emerald`, `IQM Garnet`, and `AWS Rigetti Cepheus-1`), alongside `69` completed 3-way `7Q-23Q` dense all-to-all runs on `156Q` IBM Heron.
-- **The finding:** Across **`30` completed three-way comparisons**, Prometheus ranked `#1` in **`25/30` (`83.3%`)** groups (`+9.11%` mean output-distribution agreement vs. SABRE), plus **`2/2` additional groups (`27/32` [`84.4%`] overall)** where a stock baseline targeted a disabled hardware qubit and halted pre-flight at `$0`. On `13`-qubit central-hub star circuits, Prometheus reached `0.7903` vs. `0.3370` SABRE (`+134.5%`, `-42.9%` billed credits) on `IQM Emerald` and `0.2622` vs. `0.1025` SABRE (`+155.8%`) on `Rigetti Cepheus-1`.
+- **The finding:** Across **`30` completed three-way comparisons**, Prometheus ranked `#1` in **`25/30` (`83.3%`)** groups (`+9.11%` mean output-distribution agreement vs. SABRE), plus **`2/2` additional groups (`27/32` [`84.4%`] overall)** where a stock baseline targeted a disabled hardware qubit and halted pre-flight at `$0.00`. Compared strictly against the best baseline (`max(SABRE O3, TKET)` per run), Prometheus reached `0.7903` vs. `0.7248` TKET (`+9.04%` agreement, `-20.0%` billed credits [`$3.00` vs. `$3.75`], `-25.0%` `2Q` gates) on `13Q` `IQM Emerald` Star, `0.7439` vs. `0.4006` TKET (`+85.7%`) on `7Q` `Rigetti Cepheus-1` Star, and `0.2622` vs. `0.1025` SABRE (`+155.8%`) on `13Q` `Rigetti Cepheus-1` Star.
 - **The significance:** Many chemistry, phase-estimation, and optimization subroutines couple one control qubit to many others (star circuits) or couple every qubit pair (all-to-all circuits); cutting extra routing gates preserves usable signal on wider problems.
 - **The boundary:** On small `3Q` star circuits all three compilers tied near `0.98`; baselines won `5/30` completed groups (`4` SABRE, `1` TKET), and above `20Q` on dense all-to-all circuits hardware noise lowers absolute agreement (`0.04-0.06`) across all compilers even though Prometheus retains a `+44%` to `+55%` relative lead.
 - **The evidence:** Simplified absolute-plus-relative chart and compact summary table below, with full scientific figures, all `32` group rows, and raw-histogram verification underneath.
@@ -15,13 +15,13 @@
 - Initial public release of all `187` cloud records (`32` 3-way groups including two simultaneous `5`-QPU cross-cloud dispatches and `4Q H2` / `6Q LiH` chemistry runs).
 
 ![As non-local circuits widen, Prometheus retains higher output-distribution agreement](assets/fig0_simple_scaling_absolute_and_gain.png)
-*Opening summary: Absolute output-distribution agreement (`0` to `1.0`) and `%` change vs. Qiskit SABRE O3 across `3Q-13Q` Central-Hub Star (`N = 24` cloud jobs) and `7Q-23Q` Dense All-to-All circuits (`N = 69` completed 3-way IBM Heron jobs).*
+*Opening summary: Absolute output-distribution agreement (`0` to `1.0`) and `%` change strictly vs. Best Baseline (`max(SABRE O3, TKET)`) across `3Q-13Q` Central-Hub Star and `7Q-23Q` Dense All-to-All circuits (`N = 69` completed 3-way IBM Heron jobs).*
 
 ---
 
 ## Executive Summary (`30` Completed 3-Way Groups + `2` Pre-Flight Baseline Halts = `32` Groups, `1,407,488` Shots)
 
-*Hardware IDs:* `106` IBM (`dc1csqts2omc738aeubg`..`dc1t14inj2vs73dfr1qg`), `67` IQM (`01a1f5e1-db66..`..`01a20701-bb5d..`), and `14` AWS Braket Rigetti tasks (`064ec617..`..`f245e7e9..`). Exact `*(mean)*` across all `30` completed 3-arm groups (kept separate from the `2` groups `G06` & `G24` where a stock baseline targeted a disabled qubit and halted pre-flight at `$0`):
+*Hardware IDs:* `106` IBM (`dc1csqts2omc738aeubg`..`dc1t14inj2vs73dfr1qg`), `67` IQM (`01a1f5e1-db66..`..`01a20701-bb5d..`), and `14` AWS Braket Rigetti tasks (`064ec617..`..`f245e7e9..`). Exact `*(mean)*` across all `30` completed 3-arm groups (kept separate from the `2` groups `G06` & `G24` where a stock baseline targeted a disabled qubit and halted pre-flight at `$0.00`):
 
 | Compiler (`30` Completed 3-Way Groups) | Output-Distribution Agreement $F_B$ `(↑)` | Squared Hellinger $F_H$ `(↑)` | `HOP` `(↑)` | `TVD` `(↓)` | `XEB` `(↑)` | Entropy `(↓)` | `2Q` Gates / Depth `(↓)` | Completed `#1` Wins (`30` Groups) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -46,7 +46,7 @@
 <details>
 <summary><strong>1. Common-Denominator Slices Across Domain, Width Tier, QPU & Isolation Mode - Click to expand</strong></summary>
 
-*(Note: Group win denominators below reflect all `32` groups; in `G06` [`ibm_kingston` chemistry] stock SABRE halted pre-flight at `$0` while TKET [`0.9609`] and Prometheus [`0.9664`] completed, and in `G24` [`aws_rigetti_cepheus` `7Q` Star] both stock baselines targeted isolated `q[49]` and halted at `$0` while Prometheus [`0.7313`] completed; `*(mean)*` columns average completed arms.)*
+*(Note: Group win denominators below reflect all `32` groups; in `G06` [`ibm_kingston` chemistry] stock SABRE halted pre-flight at `$0.00` while TKET [`0.9609`] and Prometheus [`0.9664`] completed, and in `G24` [`aws_rigetti_cepheus` `7Q` Star] both stock baselines targeted isolated `q[49]` and halted at `$0.00` while Prometheus [`0.7313`] completed; `*(mean)*` columns average completed arms.)*
 
 | Common-Denominator Slice | `#1` Wins `(↑)` | SABRE $F_B$ `*(mean)*` `(↑)` | TKET $F_B$ `*(mean)*` `(↑)` | Prom $F_B$ `*(mean)*` `(↑)` | Mean `2Q` Gates (`S / T / P`) `(↓)` | `% F_B Delta vs. SABRE / TKET` `(↑)` |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -70,21 +70,21 @@
 </details>
 
 <details>
-<summary><strong>2. Full Scientific Figures (3-Panel Log-Multiplier Atlas & Simultaneous 5-QPU Matrix) + Dense K_N Table - Click to expand</strong></summary>
+<summary><strong>2. Full Scientific Figures (3-Panel Best-Baseline Atlas & Simultaneous 5-QPU Matrix) + Dense K_N Table - Click to expand</strong></summary>
 
 ![Detailed 3-Panel Non-Local Scaling Atlas](assets/fig1_nonlocal_scaling_star_and_dense_kn.png)
 
 ![Simultaneous 5-QPU Cross-Cloud Benchmark Matrix](assets/fig2_simultaneous_5qpu_cross_cloud_matrix.png)
 
-| Width Bin (`N = 69` Completed 3-Way `IBM Heron` `K_N` Jobs) | SABRE $F_B$ `*(mean)*` `(↑)` | TKET $F_B$ `*(mean)*` `(↑)` | Prom $F_B$ `*(mean)*` `(↑)` | Ratio (`P/S` · `P/T`) `(↑)` | Linear `XEB` `*(mean)*` (`S / T / P`) `(↑)` | `2Q` `CZ` Gates `*(mean)*` (`S / T / P`) `(↓)` |
+| Width Bin (`N = 69` Completed 3-Way `IBM Heron` `K_N` Jobs) | SABRE $F_B$ `*(mean)*` `(↑)` | TKET $F_B$ `*(mean)*` `(↑)` | Prom $F_B$ `*(mean)*` `(↑)` | `% vs. Best Baseline` `(↑)` | Linear `XEB` `*(mean)*` (`S / T / P`) `(↑)` | `2Q` `CZ` Gates `*(mean)*` (`S / T / P`) `(↓)` |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **`7Q-8Q`** (`N = 4`) | `0.8049` | `0.7087` | **`0.8188`** | **`1.02x` · `1.16x`** | `12.4` / `9.8` / **`13.4`** | `66.0` / `87.8` / **`54.5`** |
-| **`10Q-12Q`** (`N = 3`) | `0.5847` | `0.4292` | **`0.6628`** | **`1.13x` · `1.54x`** | `16.0` / `9.2` / **`21.3`** | `153.0` / `221.3` / **`118.7`** |
-| **`13Q-15Q`** (`N = 6`) | `0.3221` | `0.2142` | **`0.4122`** | **`1.28x` · `1.92x`** | `53.3` / `29.3` / **`83.4`** | `222.8` / `371.3` / **`184.0`** |
-| **`16Q-17Q`** (`N = 10`) | `0.2004` | `0.1142` | **`0.2653`** | **`1.32x` · `2.32x`** | `128.1` / `37.3` / **`159.4`** | `333.0` / `496.0` / **`276.6`** |
-| **`18Q-19Q`** (`N = 18`) | `0.1145` | `0.0482` | **`0.1792`** | **`1.57x` · `3.72x`** | `245.8` / `81.8` / **`406.8`** | `419.9` / `665.7` / **`360.6`** |
-| **`20Q-21Q`** (`N = 17`) | `0.0396` | `0.0055` | **`0.0612`** | **`1.55x` · `11.13x`** | `224.3` / `20.1` / **`244.3`** | `520.6` / `848.8` / **`442.5`** |
-| **`22Q-23Q`** (`N = 11`) | `0.0271` | `0.0013` | **`0.0390`** | **`1.44x` · `30.31x`** | `531.5` / `30.7` / **`738.4`** | `592.5` / `1042.6` / **`529.6`** |
+| **`7Q-8Q`** (`N = 4`) | `0.8049` | `0.7087` | **`0.8188`** | **`+1.73%`** (`1.02x` vs. S) | `12.4` / `9.8` / **`13.4`** | `66.0` / `87.8` / **`54.5`** |
+| **`10Q-12Q`** (`N = 3`) | `0.5847` | `0.4292` | **`0.6628`** | **`+13.36%`** (`1.13x` vs. S) | `16.0` / `9.2` / **`21.3`** | `153.0` / `221.3` / **`118.7`** |
+| **`13Q-15Q`** (`N = 6`) | `0.3221` | `0.2142` | **`0.4122`** | **`+27.97%`** (`1.28x` vs. S) | `53.3` / `29.3` / **`83.4`** | `222.8` / `371.3` / **`184.0`** |
+| **`16Q-17Q`** (`N = 10`) | `0.2004` | `0.1142` | **`0.2653`** | **`+32.39%`** (`1.32x` vs. S) | `128.1` / `37.3` / **`159.4`** | `333.0` / `496.0` / **`276.6`** |
+| **`18Q-19Q`** (`N = 18`) | `0.1145` | `0.0482` | **`0.1792`** | **`+56.51%`** (`1.57x` vs. S) | `245.8` / `81.8` / **`406.8`** | `419.9` / `665.7` / **`360.6`** |
+| **`20Q-21Q`** (`N = 17`) | `0.0396` | `0.0055` | **`0.0612`** | **`+54.55%`** (`1.55x` vs. S) | `224.3` / `20.1` / **`244.3`** | `520.6` / `848.8` / **`442.5`** |
+| **`22Q-23Q`** (`N = 11`) | `0.0271` | `0.0013` | **`0.0390`** | **`+43.91%`** (`1.44x` vs. S) | `531.5` / `30.7` / **`738.4`** | `592.5` / `1042.6` / **`529.6`** |
 
 *(Algorithmic context: Star-hub `K_{1,N-1}` graphs appear in Hadamard-test / `QC-AFQMC` trial overlaps, Quantum Phase Estimation `QPE`, non-local Jordan-Wigner Pauli exponentials, and `QEC` syndrome fanout; dense `K_N` graphs appear in fermionic orbital rotations and `QFT`. Full chronological `G01`-`G32` ledger and `4Q H2` / `6Q LiH` chemistry reconstructions are in [`DETAILED_TECHNICAL_REPORT.md`](DETAILED_TECHNICAL_REPORT.md).)*
 

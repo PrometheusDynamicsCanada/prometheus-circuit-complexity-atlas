@@ -4,18 +4,18 @@
   "file_count": 13,
   "files": {
     ".gitattributes": "fbbf6471af40b215a6a5e77b0118079665ecbeef0da86ef9c71530bc662ecad4",
-    "assets/fig1_nonlocal_scaling_star_and_dense_kn.png": "5373101b97f5f0ee33d87a435b60295beee9bb3997e572bd1060d354b41aa804",
-    "assets/fig2_simultaneous_5qpu_cross_cloud_matrix.png": "8cef15470cfc31f59953d0d5d1c1df3f2e55368c4fde3e6e01096a0f1308019a",
+    "assets/fig1_nonlocal_scaling_star_and_dense_kn.png": "555f012aad85b81895285fb8d8e36553784c24eac034efa0a6a88053d752932a",
+    "assets/fig2_simultaneous_5qpu_cross_cloud_matrix.png": "287ad22acf04adcd9055ce33e1f09363d21a49f96072e180818e7b1f67ebf79f",
     "data/ALL_187_PILOT_CLOUD_JOBS_LEDGER.csv": "6f43a29bb646cc1169e238178dafaa91256b649225933d8920ab9af3854161b8",
     "data/ALL_32_THREE_WAY_COMPARISONS.csv": "791ac171e52b4e18a87a3e9a4665e5676e723a679e210f13467a73e41173e4a3",
     "data/COMMON_DENOMINATOR_SUMMARY.json": "d3144e9ced36fb4f552e7c5317f475ae2f05c08745b7bc6750391759891b23e8",
     "data/LOGICAL_BENCHMARK_CIRCUITS_AND_HISTOGRAMS.json": "ab1017a9fdfb8fb05a2dacec9e13da502207301dc784c9b0886d6e4f7374beb9",
     "DATA_DICTIONARY.md": "5910002218c5eb8b0979e60f4fd8263d8678f7884f43a8f6445a6adb5e9514d4",
-    "DETAILED_TECHNICAL_REPORT.md": "46e4d4a11f8bb25556b4ac41d212360112d6ba70bd1d14dcc873d0626bdd95ce",
+    "DETAILED_TECHNICAL_REPORT.md": "a778a427c18d24401c295b49b123d0efaedba513d7fecb73cb8f2789728f3f57",
     "LICENSE": "a214fc704360fbd5de37600c8e7f97872cef5c021d6605a554a27fb093ad5ea6",
     "PUBLIC_DISCLOSURE.md": "3a7b742030355c0f6b4982ca1d117f1cb3bd25a6ca0a54bbaedbaf335fdb87a5",
-    "README.md": "110fa30e84a59e54c4f0be5f8ad877ec1f235011cc8b99f01955efbf7aef936b",
+    "README.md": "5e3052b6f3749c21f09e78539ca529f1e6cf907bfd3631ef4ed234bad1ba90a4",
     "scripts/verify_complexity_atlas.py": "a74f1f44566a5bc1e1f46aeefd54816ce2c65f73c36e8fe5a8ee48e7eb1dad64",
-    "assets/fig0_simple_scaling_absolute_and_gain.png": "5272b12dff74788dc598b74f50d5457a2c67bbfc556396ed5405fd1629c3a38d"
+    "assets/fig0_simple_scaling_absolute_and_gain.png": "4786c5eb72b8bfa6b0511de11bd0da6cf95f84d15c6b1f2095f1020d540bee7e"
   }
 }
