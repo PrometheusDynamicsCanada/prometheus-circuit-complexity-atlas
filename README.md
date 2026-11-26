@@ -1,30 +1,26 @@
-# Circuit Complexity & Multi-Cloud Scaling Atlas (`3Q` to `23Q`)
+# Multi-Cloud Circuit Width & Connectivity Comparison (3Q to 23Q)
 
-*Portfolio Hub: [Prometheus Quantum Overview](https://github.com/PrometheusDynamicsCanada/prometheus-quantum-overview) · [Full 38-Group & Chemistry Report](DETAILED_TECHNICAL_REPORT.md) · [Data Dictionary](DATA_DICTIONARY.md)*
+*Portfolio Hub: [Prometheus Quantum Overview](https://github.com/PrometheusDynamicsCanada/prometheus-quantum-overview) · [Detailed Technical Report](DETAILED_TECHNICAL_REPORT.md) · [Data Dictionary](DATA_DICTIONARY.md)*
 
-## Introduction
+As quantum circuits widen and connect distant qubits, routing swaps accumulate and hardware output degrades. We tested how Prometheus compares against Qiskit SABRE O3 and Quantinuum TKET across six cloud processors (IBM Fez, Kingston, and Marrakesh; IQM Emerald and Garnet; and Rigetti Cepheus-1-108Q on Amazon Braket) from 3 to 23 qubits.
 
-- **The question:** How does compilation quality, active-space chemistry accuracy, and spatial-packing cost change as quantum circuits grow wider and connect non-neighboring qubits across different cloud processors?
-- **The test:** We ran `38` live three-compiler benchmark groups (`225` unique cloud records: `224` completed benchmark jobs/tasks + `1` cancelled auxiliary job = `708` PUBs and `1,782,272` physical shots) comparing Qiskit SABRE O3, Quantinuum TKET, and Prometheus across `6` superconducting processors (`IBM Fez`, `IBM Kingston`, `IBM Marrakesh`, `IQM Emerald`, `IQM Garnet`, and `AWS Rigetti Cepheus-1`), alongside `69` completed 3-way `7Q-23Q` dense all-to-all runs on `156Q` IBM Heron.
-- **The finding:** Across **`36` completed three-way comparisons**, Prometheus ranked `#1` in **`30/36` (`83.3%`)** groups (`+9.00%` mean output-distribution agreement vs. best overall baseline TKET and `+9.63%` vs. SABRE), plus **`2/2` additional groups (`32/38` [`84.2%`] overall)** where a stock baseline targeted a disabled hardware qubit and halted pre-flight at `$0.00`. Compared strictly against each test's best baseline (`max(SABRE O3, TKET)` on agreement; `min(SABRE O3, TKET)` on error/cost), Prometheus reached:
-  - **Star & Overlap (`3Q-13Q`):** `0.7903` vs. `0.7248` TKET (`+9.04%` agreement, `-20.0%` billed credits [`$3.00` vs. `$3.75`]) on `13Q` `IQM Emerald` Star, `0.7439` vs. `0.4006` TKET (`+85.7%`) on `7Q` `Rigetti Cepheus-1`, and `0.2622` vs. `0.1025` SABRE (`+155.8%`) on `13Q` `Rigetti Cepheus-1`.
-  - **Correlated `8Q Linear H4` (`1.00 A` + `1.50 A`, `10` QWC Circuits on `IQM Emerald`):** Cut active-space execution error `|E_meas - E_prep|` by **`-33.82%` to `-36.85%` vs. best baseline TKET** (`72.34 mHa` & `76.00 mHa` vs. `114.56-114.83 mHa`, confirming `Linear H4 1.00 A` at **`58.17 +/- 9.20 mHa <= 65.0 mHa`** in `1-way` mode vs. `0/2` baselines), and in back-to-back `3-way` spatial packing (`4` PUBs/wave) cut IQM spend to **`8.25 cr` (`$8.25`, `-21.43%` vs. SABRE `10.50 cr` and `-26.67%` vs. TKET `11.25 cr`; `2.25 cr` Wave 1 in `2.521 s`)** while ranking `#1` on agreement (`F_B = 0.8976`) and `#1` on chemistry (`87.77 mHa`, `-25.93%` vs. TKET).
-  - **`10Q QC-AFQMC` Matchgate Shadow Quartet:** Auto-selected `IBM Kingston` (`255 us` $T_1$) achieved **`4/4 VERIFIED PASS` (`F_B = 0.8052`, `+9.76%` vs. TKET `0.7336`, `+67.72%` vs. SABRE `0.4801`)** at equal `8.00 s`, whereas manual override onto `IQM Emerald` (`52 us` $T_1$) after a `2.5 h` queue (`13.2 h` calibration age) yielded `0/4` passes across all compilers (`0.6462` SABRE / `0.5785` TKET / `0.6340` Prometheus).
-- **The significance:** Real quantum chemistry, fermionic trial-projection, and phase-estimation subroutines combine non-local two-qubit graphs with strict coherence and shot budgets; matching processor $T_1$ to circuit depth and packing disjoint islands cuts QPU spend while preserving observable accuracy.
-- **The boundary:** On small `3Q` star circuits all three compilers tied near `0.98`; baselines won `6/36` completed groups (`5` SABRE, `1` TKET, all disclosed in [`DETAILED_TECHNICAL_REPORT.md`](DETAILED_TECHNICAL_REPORT.md)), `3-way` simultaneous packing on `8Q H4` traded `+11.77 mHa` crosstalk on `1.00 A` for `-26.67%` lower QPU credits, and above `20Q` on dense all-to-all circuits hardware noise lowers absolute agreement (`0.04-0.06`) across all compilers.
-- **The evidence:** Simplified absolute-plus-relative chart and executive summary table below, with all `38` group rows, molecular energy reconstructions, and `0`-credential statevector + raw-histogram verification underneath.
+Across 36 completed three-compiler benchmark groups, Prometheus ranked first in 30 of 36 comparisons (83.3%), improving average output agreement by 9.00% over the strongest overall baseline (TKET) and 9.63% over SABRE, while two additional groups halted pre-flight at $0.00 when a baseline targeted a disabled hardware qubit. Highlights include 33.8% to 36.9% lower 8-qubit linear H4 active-space energy error on IQM Emerald (plus 21.4% lower credit cost when packed 3-way) and 4 of 4 verified passes on 10-qubit matchgate circuits on IBM Kingston (+9.76% vs. TKET).
 
-### What Changed (`2026-11-24` Release `v2026.11.24`)
-- **Added `38` new live cloud QPU records (`G33-G38` + `2-way` packed Matchgate companion, `244` PUBs, `374,784` physical shots):** Expanded archive from `187 -> 225` unique cloud records (`32 -> 38` 3-compiler groups, `1.41M -> 1.78M` shots), adding `3` `8Q Linear H4 STO-3G CAS(4e,4o)` cohorts on `IQM Emerald` (including back-to-back `1-way` vs. `3-way` spatial packing) and `3` `10Q QC-AFQMC Matchgate Shadow Quartet` cohorts across `IBM Kingston` and `IQM Emerald`.
+On small 3-qubit circuits all three compilers tied near 0.98; baselines won 6 of 36 completed groups (5 SABRE, 1 TKET), simultaneous 3-way H4 packing traded +11.8 mHa crosstalk for lower credit spend, and above 20 qubits on dense all-to-all circuits hardware noise reduced absolute agreement across every compiler.
+
+This repository contains the circuits, raw measurements, and offline verification tools from 224 completed benchmark jobs and tasks (225 total provider records, 1.78 million measurement shots).
 
 ![As non-local circuits widen, Prometheus retains higher output-distribution agreement](assets/fig0_simple_scaling_absolute_and_gain.png)
-*Opening summary: Absolute output-distribution agreement (`0` to `1.0`) and `%` change strictly vs. Best Baseline (`max(SABRE O3, TKET)`) across `3Q-13Q` Central-Hub Star and `7Q-23Q` Dense All-to-All circuits (`N = 69` completed 3-way IBM Heron jobs).*
+*Summary figure: Average output agreement (0 to 1.0) and percent gain versus the strongest baseline across 3-to-13-qubit star and 7-to-23-qubit dense all-to-all circuits on 156-qubit IBM Heron processors.*
+
+**[Read the detailed results](#detailed-results) · [Verify the data](#verify-the-data) · [Request an evaluation](https://prometheusdynamics.ca/connect/) · [Book a demonstration](mailto:william@prometheusdynamics.ca?subject=Prometheus%20Evaluation)**
 
 ---
 
+<a id="detailed-results"></a>
 ## Executive Summary (`36` Completed 3-Way Groups + `2` Pre-Flight Baseline Halts = `38` Groups, `1,782,272` Shots)
 
-*Hardware IDs:* `112` IBM (`dbvuld2nj2vs73dd6g10`..`dc27p8qnj2vs73dg9hng`), `99` IQM (`01a1f5e1-db66..`..`01a20cb2-6aed..`), and `14` AWS Braket Rigetti tasks (`064ec617..`..`f245e7e9..`). Exact `*(mean)*` across all `36` completed 3-arm groups (kept separate from `G06` & `G24` where a stock baseline targeted a disabled qubit and halted pre-flight at `$0.00`):
+*Hardware IDs:* `112` IBM (`dbvuld2nj2vs73dd6g10`..`dc27p8qnj2vs73dg9hng`), `99` IQM (`01a1f5e1-db66..`..`01a20cb2-6aed..`), and `14` AWS Braket Rigetti tasks (`064ec617..`..`f245e7e9..`). Exact *(mean)* across all `36` completed 3-arm groups (kept separate from `G06` & `G24` where a stock baseline targeted a disabled qubit and halted pre-flight at `$0.00`):
 
 | Compiler (`36` Completed 3-Way Groups) | Output-Distribution Agreement $F_B$ `(↑)` | Squared Hellinger $F_H$ `(↑)` | `HOP` `(↑)` | `TVD` `(↓)` | `XEB` `(↑)` | Entropy `(↓)` | `2Q` Gates / Depth `(↓)` | Completed `#1` Wins (`36` Groups) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -36,11 +32,15 @@
 
 ---
 
+<a id="verify-the-data"></a>
 ## Inspect the Evidence & Reproduce Supported Checks Offline
 
 - **Command:** `python scripts/verify_complexity_atlas.py`
 - **Dependencies & measured runtime:** Python 3 + `numpy` (`qiskit` optional for live OpenQASM statevector simulation; **`~1.29 s`** measured runtime with `qiskit` installed, `0` cloud credentials; verifies all `225` unique cloud IDs, `112` completed arms, and SHA-256 digests).
-- **Try QuantumCompiler (`10` free jobs) or scope a pilot:** [prometheusdynamics.ca/quantumcompiler](https://prometheusdynamics.ca/quantumcompiler) | [william@prometheusdynamics.ca](mailto:william@prometheusdynamics.ca)
+- **Request an evaluation or book a demonstration:** [prometheusdynamics.ca/connect](https://prometheusdynamics.ca/connect/) | [william@prometheusdynamics.ca](mailto:william@prometheusdynamics.ca?subject=Prometheus%20Evaluation)
+
+
+*Release note (`v2026.11.24`):* Expanded archive from 187 to 225 unique cloud records (224 completed benchmark jobs/tasks + 1 cancelled auxiliary record; 38 three-compiler groups; 1.78M shots), adding 8Q Linear H4 STO-3G cohorts on IQM Emerald and 10Q QC-AFQMC matchgate cohorts on IBM Kingston and IQM Emerald.
 
 ---
 
@@ -49,9 +49,9 @@
 <details>
 <summary><strong>1. Common-Denominator Slices Across Family, Width Tier, QPU & Isolation Mode - Click to expand</strong></summary>
 
-*(Note: Group win denominators below reflect all `38` groups; in `G06` [`ibm_kingston` chemistry] stock SABRE halted pre-flight at `$0.00` while TKET [`0.9609`] and Prometheus [`0.9664`] completed, and in `G24` [`aws_rigetti_cepheus` `7Q` Star] both stock baselines targeted isolated `q[49]` and halted at `$0.00` while Prometheus [`0.7313`] completed; `*(mean)*` columns average completed 3-way arms.)*
+*(Note: Group win denominators below reflect all `38` groups; in `G06` [`ibm_kingston` chemistry] stock SABRE halted pre-flight at `$0.00` while TKET [`0.9609`] and Prometheus [`0.9664`] completed, and in `G24` [`aws_rigetti_cepheus` `7Q` Star] both stock baselines targeted isolated `q[49]` and halted at `$0.00` while Prometheus [`0.7313`] completed; *(mean)* columns average completed 3-way arms.)*
 
-| Common-Denominator Slice | `#1` Wins `(↑)` | SABRE $F_B$ `*(mean)*` `(↑)` | TKET $F_B$ `*(mean)*` `(↑)` | Prom $F_B$ `*(mean)*` `(↑)` | Mean `2Q` Gates (`S / T / P`) `(↓)` | `% F_B Delta vs. Best Baseline (S / T)` `(↑)` |
+| Common-Denominator Slice | `#1` Wins `(↑)` | SABRE $F_B$ *(mean)* `(↑)` | TKET $F_B$ *(mean)* `(↑)` | Prom $F_B$ *(mean)* `(↑)` | Mean `2Q` Gates (`S / T / P`) `(↓)` | `% F_B Delta vs. Best Baseline (S / T)` `(↑)` |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Family: Star-Hub (`K_{1,N-1}`, `3Q-13Q`)** | **`13 / 15` (`86.7%`)** | `0.7287` | `0.7421` | **`0.8457`** | `12.14` / `13.21` / **`9.93`** | **`+13.96%` vs. best** (`+16.05%` S / `+13.96%` T) |
 | **Family: Chemistry (`H2`, `LiH`, `Linear H4`)** | **`9 / 9` (`100.0%`)** | `0.9237` | `0.9347` | **`0.9482`** | **`17.50`** / `21.38` / `20.48` | **`+1.44%` vs. best** (`+2.65%` S / `+1.44%` T) (`-21.4%` to `-69.2%` packed) |
@@ -80,7 +80,7 @@
 
 ![Simultaneous 5-QPU Cross-Cloud Benchmark Matrix](assets/fig2_simultaneous_5qpu_cross_cloud_matrix.png)
 
-| Width Bin (`N = 69` Completed 3-Way `IBM Heron` `K_N` Jobs) | SABRE $F_B$ `*(mean)*` `(↑)` | TKET $F_B$ `*(mean)*` `(↑)` | Prom $F_B$ `*(mean)*` `(↑)` | `% vs. Best Baseline` `(↑)` | Linear `XEB` `*(mean)*` (`S / T / P`) `(↑)` | `2Q` `CZ` Gates `*(mean)*` (`S / T / P`) `(↓)` |
+| Width Bin (`N = 69` Completed 3-Way `IBM Heron` `K_N` Jobs) | SABRE $F_B$ *(mean)* `(↑)` | TKET $F_B$ *(mean)* `(↑)` | Prom $F_B$ *(mean)* `(↑)` | `% vs. Best Baseline` `(↑)` | Linear `XEB` *(mean)* (`S / T / P`) `(↑)` | `2Q` `CZ` Gates *(mean)* (`S / T / P`) `(↓)` |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **`7Q-8Q`** (`N = 4`) | `0.8049` | `0.7087` | **`0.8188`** | **`+1.73%`** (`1.02x` vs. S) | `12.4` / `9.8` / **`13.4`** | `66.0` / `87.8` / **`54.5`** |
 | **`10Q-12Q`** (`N = 3`) | `0.5847` | `0.4292` | **`0.6628`** | **`+13.36%`** (`1.13x` vs. S) | `16.0` / `9.2` / **`21.3`** | `153.0` / `221.3` / **`118.7`** |
